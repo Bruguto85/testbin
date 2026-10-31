@@ -94,6 +94,7 @@ class AlavancagemConsorcio(Scene):
         self.cap_text = ""
         self.cap_start = 0.0
         self.cap_need = 0.0
+        self.cap_section = ""
         self.entries = []
         self.section_name = ""
 
@@ -110,6 +111,7 @@ class AlavancagemConsorcio(Scene):
         self.add_foreground_mobject(cap)
         self.cap = cap
         self.cap_text = text
+        self.cap_section = self.section_name
         self.cap_start = self.time
         self.cap_need = max(2.6, 0.068 * len(text) + 0.6)
 
@@ -119,7 +121,7 @@ class AlavancagemConsorcio(Scene):
         elapsed = self.time - self.cap_start
         if elapsed < self.cap_need:
             self.wait(self.cap_need - elapsed)
-        self.entries.append((self.cap_start, self.time, self.cap_text, self.section_name))
+        self.entries.append((self.cap_start, self.time, self.cap_text, self.cap_section))
         self.remove_foreground_mobject(self.cap)
         self.remove(self.cap)
         self.cap = None
